@@ -31,19 +31,20 @@ module.exports = () => {
         swSrc: path.resolve("./src-sw.js")
       }),
       new WebpackPwaManifest({
-        name: 'TextBoi Editor',
-        short_name: 'TBE',
+        name: 'Just Another Text Editor',
+        short_name: 'jate',
         description: 'A text editor for your browser',
         background_color: '#555555',
         start_url: './',
         publicPath: './',
         inject: true,
         theme_color: '#555555',
+        fingerprints: false,
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
             destination: path.join('assets/icons'),
-            sizes: [96, 128, 192, 256, 384, 512], // multiple sizes,
+            sizes: [96, 128, 192, 256, 384, 512],
             ios: true
           },
         ]
