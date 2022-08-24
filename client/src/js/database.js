@@ -19,10 +19,7 @@ export const putDb = async (content) => {
   const jate_db = await openDB('jate', 1);
   const tx = jate_db.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
-  const request = store.put({
-    id: id,
-    text: content
-  });
+  const request = store.put({text: content});
   const result = await request;
   console.log('DATA UPDATED', result)
 }
@@ -34,9 +31,13 @@ export const getDb = async () => {
   const jate_db = await openDB('jate', 1);
   const tx = jate_db.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
-  const request = store.getAll();
-  const result = await request;
-  console.log('RESULT VALUE!', result);
-  return result;
+  const request = store.getAll().values;
+  const data = await request;
+  console.log('RESULT VALUE!', data);
+  return data ? data : null;
 }
 initdb();
+
+// there is a property attached to the return values
+// if you do get all, you can call a property called values on that return
+//getAll.values 
